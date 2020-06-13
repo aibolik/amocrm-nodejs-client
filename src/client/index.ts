@@ -3,9 +3,9 @@ import prop from 'lodash.property';
 import qs from 'qs';
 
 import { URLS } from './urls';
-import { Lead } from 'src/typings/lead';
-import { Contact } from 'src/typings/contact';
-import { Company } from 'src/typings/company';
+import { Lead } from '../typings/lead';
+import { Contact } from '../typings/contact';
+import { Company } from '../typings/company';
 
 interface AmoClientOptions {
   baseUrl: string;
