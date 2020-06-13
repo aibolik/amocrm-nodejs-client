@@ -1,3 +1,11 @@
+#### 0.0.2 (2020-06-13)
+
+##### Chores
+
+*  do not use aliases for paths to avoid TS issue ([df58528a](https://github.com/aibolik/amocrm-nodejs-client/commit/df58528a95ae3b026b9ce532e917acedb6cd09e3))
+*  prepare package for NPM release ([8ab84302](https://github.com/aibolik/amocrm-nodejs-client/commit/8ab843020456ca4273f5518dfaf72e51de38cdf8))
+* **types:**  add types to NPM bundle ([7df8d80f](https://github.com/aibolik/amocrm-nodejs-client/commit/7df8d80f16c42633381cd607a32d496ff2200e72))
+
 #### 0.0.1 (2020-06-13)
 
 ##### Chores
