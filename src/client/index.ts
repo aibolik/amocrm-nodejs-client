@@ -3,6 +3,9 @@ import prop from 'lodash.property';
 import qs from 'qs';
 
 import { URLS } from './urls';
+import { Lead } from 'src/typings/lead';
+import { Contact } from 'src/typings/contact';
+import { Company } from 'src/typings/company';
 
 interface AmoClientOptions {
   baseUrl: string;
@@ -38,5 +41,32 @@ export class AmoClient {
     const account = await this._requester.get(`${url}?${q}`);
 
     return account;
+  }
+
+  async getLead(leadId: number, query: object = {}) {
+    let url = this._buildUrl('leads');
+    let q = qs.stringify(query);
+
+    const lead = await this._requester.get<Lead>(`${url}/${leadId}?${q}`);
+
+    return lead;
+  }
+
+  async getContact(contactId: number, query: object = {}) {
+    let url = this._buildUrl('contacts');
+    let q = qs.stringify(query);
+
+    const contact = await this._requester.get<Contact>(`${url}/${contactId}?${q}`);
+
+    return contact;
+  }
+
+  async getCompany(companyId: number, query: object = {}) {
+    let url = this._buildUrl('companies');
+    let q = qs.stringify(query);
+
+    const company = await this._requester.get<Company>(`${url}/${companyId}?${q}`);
+
+    return company;
   }
 }
