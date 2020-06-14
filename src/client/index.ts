@@ -6,6 +6,7 @@ import { URLS } from './urls';
 import { Lead } from '../typings/lead';
 import { Contact } from '../typings/contact';
 import { Company } from '../typings/company';
+import { Account } from '../typings/account';
 
 interface AmoClientOptions {
   baseUrl: string;
@@ -38,7 +39,7 @@ export class AmoClient {
   async account(query: object = {}) {
     let url = this._buildUrl('account');
     let q = qs.stringify(query);
-    const account = await this._requester.get(`${url}?${q}`);
+    const account = await this._requester.get<Account>(`${url}?${q}`);
 
     return account;
   }
