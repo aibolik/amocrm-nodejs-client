@@ -1,4 +1,4 @@
-import { CustomField, Links, Embedded } from './common';
+import { EntityCustomField, Links, Embedded } from './common';
 
 export interface Contact {
   id?: number;
@@ -12,7 +12,7 @@ export interface Contact {
   created_at?: number;
   updated_at?: number;
   closest_task_at?: any;
-  custom_fields_values?: CustomField[];
+  custom_fields_values?: EntityCustomField[];
   account_id?: number;
   _links?: Links;
   _embedded?: Embedded;

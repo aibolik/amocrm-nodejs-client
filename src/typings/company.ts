@@ -1,4 +1,4 @@
-import { Links, Embedded, CustomField } from './common';
+import { Links, Embedded, EntityCustomField } from './common';
 
 export interface Company {
   id?: number;
@@ -10,7 +10,7 @@ export interface Company {
   created_at?: number;
   updated_at?: number;
   closest_task_at?: any;
-  custom_fields_values?: CustomField[];
+  custom_fields_values?: EntityCustomField[];
   account_id?: number;
   _links: Links;
   _embedded: Embedded;

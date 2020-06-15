@@ -7,6 +7,8 @@ import { Lead } from '../typings/lead';
 import { Contact } from '../typings/contact';
 import { Company } from '../typings/company';
 import { Account } from '../typings/account';
+import { CustomFieldDefiniton } from '../typings/custom-field';
+import { ListResponse } from '../typings/common';
 
 interface AmoClientOptions {
   baseUrl: string;
@@ -70,4 +72,16 @@ export class AmoClient {
 
     return company;
   }
+
+  
+
+  async getCustomFields(entity: keyof typeof URLS['v4']['custom_fields']) {
+    let url = this._buildUrl(`custom_fields.${entity}`);
+    let q = qs.stringify({ limit: 250 });
+
+    const customFieldsResponse = await this._requester.get<ListResponse<'custom_fields', CustomFieldDefiniton>>(`${url}?${q}`);
+
+    return customFieldsResponse?._embedded?.custom_fields ?? null;
+  }
 }
+

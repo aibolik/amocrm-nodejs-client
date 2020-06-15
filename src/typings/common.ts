@@ -1,10 +1,18 @@
+export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields';
+
 export interface Links {
   self: {
+    href: string;
+  };
+  next?: {
+    href: string;
+  };
+  prev?: {
     href: string;
   }
 }
 
-export interface CustomField {
+export interface EntityCustomField {
   field_id: number;
   field_name: string;
   field_code?: any;
@@ -32,6 +40,12 @@ export interface Embedded {
   tags?: any;
   leads?: any;
   companies?: any;
-  contacts?: EmbeddedContact;
+  contacts?: EmbeddedContact[];
   datetime_settings?: DateTimeSettings;
+}
+
+export type ListResponse<K extends EntityType, T> = {
+  _page?: number;
+  _links: Links;
+  _embedded: Record<K, T[]>;
 }

@@ -1,4 +1,4 @@
-import { Links, CustomField, Embedded } from './common';
+import { Links, EntityCustomField, Embedded } from './common';
 
 export interface Lead {
   id?: number;
@@ -17,7 +17,7 @@ export interface Lead {
   closed_at?: number;
   closest_task_at?: any;
   is_deleted?: boolean;
-  custom_fields_values?: CustomField[];
+  custom_fields_values?: EntityCustomField[];
   score?: any;
   account_id?: number;
   _links?: Links;
