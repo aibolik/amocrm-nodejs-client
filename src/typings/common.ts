@@ -1,4 +1,5 @@
 import { User } from "./user";
+import { CustomFieldType } from './custom-field';
 
 export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields' | 'users';
 
@@ -18,7 +19,7 @@ export interface EntityCustomField {
   field_id: number;
   field_name: string;
   field_code?: any;
-  field_type: string;
+  field_type: CustomFieldType;
   values: any;
 }
 
