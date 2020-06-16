@@ -1,6 +1,6 @@
 import { Links, EntityType } from './common';
 
-export type CustomFieldType = '';
+export type CustomFieldType = 'text' | 'numeric' | 'checkbox' | 'select' | 'multiselect' | 'date' | 'url' | 'textarea' | 'radiobutton' | 'streetaddress' | 'smart_address' | 'birthday' | 'legal_entity' | 'date_time';
 
 export type RemindType = 0 | 1 | 2 | 3 | null;
 
