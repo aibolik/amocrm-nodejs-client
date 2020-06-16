@@ -4,6 +4,7 @@ export const URLS = {
     leads: '/api/v4/leads',
     contacts: '/api/v4/contacts',
     companies: '/api/v4/companies',
+    users: '/api/v4/users',
     custom_fields: {
       leads: '/api/v4/leads/custom_fields',
       contacts: '/api/v4/contacts/custom_fields',

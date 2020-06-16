@@ -1,4 +1,6 @@
-export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields';
+import { User } from "./user";
+
+export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields' | 'users';
 
 export interface Links {
   self: {
@@ -42,10 +44,13 @@ export interface Embedded {
   companies?: any;
   contacts?: EmbeddedContact[];
   datetime_settings?: DateTimeSettings;
+  users?: Partial<User>[];
 }
 
 export type ListResponse<K extends EntityType, T> = {
   _page?: number;
+  _total_items?: number;
+  _page_count?: number;
   _links: Links;
   _embedded: Record<K, T[]>;
 }
