@@ -1,10 +1,24 @@
-import axios, { Method, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 interface RequesterOptions {
   token: string;
 }
 
 type AxiosMethod = 'get' | 'post';
+
+axios.interceptors.response.use(null, (error) => {
+  const url = error?.config?.url ?? '';
+
+  if (error?.response?.status >= 500 
+    && error?.response?.status < 600
+    && Boolean(url)
+    && url.indexOf('.z1.amocrm.') === -1) {
+    error.config.url = Requester.getSafeMirror(error.config.url);
+    return axios.request(error.config);
+  }
+
+  return Promise.reject(error);
+});
 
 /**
  * Note:
@@ -50,5 +64,9 @@ export class Requester {
       ...options,
       headers,
     };
+  }
+
+  static getSafeMirror(url: string) {
+    return url.replace(/\.amocrm\./, `.z1.amocrm.`);
   }
 }

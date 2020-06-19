@@ -33,7 +33,7 @@ export interface DateTimeSettings {
   date_pattern: string;
   short_date_pattern: string;
   short_time_pattern: string;
-  date_formant: string;
+  date_format: string;
   time_format: string;
   timezone: string;
   timezone_offset: string;
