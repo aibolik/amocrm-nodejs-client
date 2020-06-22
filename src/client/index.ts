@@ -2,14 +2,15 @@ import { Requester } from '../helpers/requester';
 import prop from 'lodash.property';
 import qs from 'qs';
 
-import { URLS } from './urls';
+import { URLS, UrlGetter } from './urls';
 import { Lead } from '../typings/lead';
 import { Contact } from '../typings/contact';
 import { Company } from '../typings/company';
 import { Account } from '../typings/account';
 import { User } from '../typings/user';
 import { CustomFieldDefiniton } from '../typings/custom-field';
-import { ListResponse } from '../typings/common';
+import { ListResponse, EntityType, EntityResponse } from '../typings/common';
+import { Note } from '../typings/note';
 
 interface AmoClientOptions {
   baseUrl: string;
@@ -32,11 +33,17 @@ export class AmoClient {
     this._requester = new Requester({ token });
   }
 
-  _buildUrl(path: string, apiVersion?: string | undefined) {
+  _buildUrl(path: string, entityId?: string | number, apiVersion?: string | undefined) {
     const version = typeof apiVersion === 'undefined' ? this._apiVersion : apiVersion;
-    const url = prop<typeof URLS, string>([version, path].join('.'))(URLS);
+    const url = prop<typeof URLS, string | UrlGetter>([version, path].join('.'))(URLS);
 
-    return `https://${this._baseUrl}${url}`;
+    if (typeof url === 'string') {
+      return `https://${this._baseUrl}${url}`;
+    } else if (typeof url === 'function') {
+      return `https://${this._baseUrl}${url(entityId)}`;
+    } else {
+      throw new Error(`Invalid path`);
+    }
   }
 
   async account(query: object = {}) {
@@ -90,6 +97,18 @@ export class AmoClient {
     const customFieldsResponse = await this._requester.get<ListResponse<'custom_fields', CustomFieldDefiniton>>(`${url}?${q}`);
 
     return customFieldsResponse?._embedded?.custom_fields ?? null;
+  }
+
+  // TODO: fix types to satisfy API
+  async createNotes(entityType: EntityType, entityId: number, notes: Note[]) {
+    let url = this._buildUrl(`notes.${entityType}`, entityId);
+    
+    const respone = await this._requester.post<EntityResponse<'notes', Note>>(
+      url,
+      notes,
+    );
+
+    return respone?._embedded?.notes ?? null;
   }
 }
 

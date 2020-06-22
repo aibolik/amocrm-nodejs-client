@@ -38,6 +38,10 @@ export class Requester {
     return await this._makeRequest<T>('get', url, options);
   }
 
+  async post<T>(url: string, postData: any, options: AxiosRequestConfig = {}) {
+    return await this._makeRequest<T>('post', url, options, postData);
+  }
+
   async _makeRequest<T>(type: AxiosMethod, url: string, options: AxiosRequestConfig, postData: any = {}) {
 
     let response;

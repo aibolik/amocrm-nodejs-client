@@ -1,7 +1,9 @@
 import { User } from "./user";
 import { CustomFieldType } from './custom-field';
+import { Note } from "./note";
 
-export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields' | 'users';
+// TODO: not sure if `Notes` should also be here
+export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields' | 'users' | 'notes';
 
 export interface Links {
   self: {
@@ -46,12 +48,18 @@ export interface Embedded {
   contacts?: EmbeddedContact[];
   datetime_settings?: DateTimeSettings;
   users?: Partial<User>[];
+  notes?: Partial<Note>[];
 }
 
 export type ListResponse<K extends EntityType, T> = {
   _page?: number;
   _total_items?: number;
   _page_count?: number;
+  _links: Links;
+  _embedded: Record<K, T[]>;
+}
+
+export type EntityResponse<K extends EntityType, T> = {
   _links: Links;
   _embedded: Record<K, T[]>;
 }
