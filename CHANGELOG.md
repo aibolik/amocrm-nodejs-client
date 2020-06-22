@@ -1,3 +1,13 @@
+#### 0.4.0 (2020-06-22)
+
+##### New Features
+
+* **client:**  implement adding notes ([2d60fd13](https://github.com/aibolik/amocrm-nodejs-client/commit/2d60fd13eef92855a20c177f2d769c988d0a5bdc))
+
+##### Bug Fixes
+
+* **types:**  add missing type to `CustomFieldType` ([f02b32c5](https://github.com/aibolik/amocrm-nodejs-client/commit/f02b32c50ed6ac06785233e9e3e1d35c8bc72a55))
+
 #### 0.0.2 (2020-06-13)
 
 ##### Chores
