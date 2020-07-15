@@ -4,6 +4,7 @@ import qs from 'qs';
 
 import { URLS, UrlGetter } from './urls';
 import { Lead } from '../typings/lead';
+import { Customer } from '../typings/customer';
 import { Contact } from '../typings/contact';
 import { Company } from '../typings/company';
 import { Account } from '../typings/account';
@@ -109,6 +110,15 @@ export class AmoClient {
     );
 
     return respone?._embedded?.notes ?? null;
+  }
+
+  async getCustomer(customerId: number, query: object = {}) {
+    let url = this._buildUrl('customers');
+    let q = qs.stringify(query);
+
+    const customer = await this._requester.get<Customer>(`${url}/${customerId}?${q}`);
+
+    return customer;
   }
 }
 

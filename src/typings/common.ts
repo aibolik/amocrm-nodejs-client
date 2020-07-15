@@ -45,6 +45,8 @@ export interface Embedded {
   tags?: any;
   leads?: any;
   companies?: any;
+  segments?: any;
+  catalog_elements?: any;
   contacts?: EmbeddedContact[];
   datetime_settings?: DateTimeSettings;
   users?: Partial<User>[];

@@ -12,7 +12,7 @@ export type NoteType = 'common' | 'call_in' | 'call_out' | 'service_message' | '
 export interface Note {
   id?: number;
   note_type: NoteType;
-  entity_id: number;
+  entity_id?: number;
   entity_type?: EntityType;
   created_by?: number;
   updated_by?: number;
