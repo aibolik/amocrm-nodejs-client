@@ -1,9 +1,9 @@
 import { Links, Embedded } from './common';
 
-type CustomerMode = 'unavailable' | 'disabled' | 'segments' | 'dynamic' | 'periodicity';
+export type CustomerMode = 'unavailable' | 'disabled' | 'segments' | 'dynamic' | 'periodicity';
 
 /** 1 - Name, Surname | 2 - Surname, Name */
-type ContactNameDisplayOrder = 1 | 2;
+export type ContactNameDisplayOrder = 1 | 2;
 
 export interface Account {
   id: number;
