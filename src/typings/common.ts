@@ -3,7 +3,7 @@ import { CustomFieldType } from './custom-field';
 import { Note } from "./note";
 
 // TODO: not sure if `Notes` should also be here
-export type EntityType = 'leads' | 'contacts' | 'company' | 'custom_fields' | 'users' | 'notes';
+export type EntityType = 'leads' | 'contacts' | 'companies' | 'custom_fields' | 'users' | 'notes' | 'customers';
 
 export interface Links {
   self: {

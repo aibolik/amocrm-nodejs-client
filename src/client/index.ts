@@ -104,12 +104,12 @@ export class AmoClient {
   async createNotes(entityType: EntityType, entityId: number, notes: Note[]) {
     let url = this._buildUrl(`notes.${entityType}`, entityId);
     
-    const respone = await this._requester.post<EntityResponse<'notes', Note>>(
+    const response = await this._requester.post<EntityResponse<'notes', Note>>(
       url,
       notes,
     );
 
-    return respone?._embedded?.notes ?? null;
+    return response?._embedded?.notes ?? null;
   }
 
   async getCustomer(customerId: number, query: object = {}) {

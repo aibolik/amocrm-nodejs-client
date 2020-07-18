@@ -16,6 +16,9 @@ export const URLS = {
     },
     notes: {
       leads: (leadId: number | string) => `/api/v4/leads/${leadId}/notes`,
+      customers: (customerId: number | string) => `/api/v4/customers/${customerId}/notes`,
+      contacts: (contactId: number | string) => `/api/v4/customers/${contactId}/notes`,
+      companies: (companyId: number | string) => `/api/v4/customers/${companyId}/notes`,
     },
   },
 };
