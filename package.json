@@ -21,7 +21,7 @@
   "author": "Aibol Kussain <aibolikdev@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "lodash.property": "^4.4.2",
     "qs": "^6.9.4"
   },
