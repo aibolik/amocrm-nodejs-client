@@ -6,6 +6,11 @@ interface RequesterOptions {
 
 type AxiosMethod = 'get' | 'post';
 
+// amoCRM API rate limits 7 requests per second
+// https://www.amocrm.ru/developers/content/api/recommendations
+const BASE_WAIT_TIME = 1000;
+const MAX_RETRIES = 5;
+
 axios.interceptors.response.use(null, (error) => {
   const url = error?.config?.url ?? '';
 
@@ -15,6 +20,29 @@ axios.interceptors.response.use(null, (error) => {
     && url.indexOf('.z1.amocrm.') === -1) {
     error.config.url = Requester.getSafeMirror(error.config.url);
     return axios.request(error.config);
+  }
+
+  return Promise.reject(error);
+});
+
+axios.interceptors.response.use(null, (error) => {
+  if (error?.response?.status === 429) {
+    const retryCount = error.config.retryCount || 0;
+    
+    if (retryCount >= MAX_RETRIES) {
+      return Promise.reject(error);
+    }
+
+    // Exponential backoff with jitter for rate limiting
+    const jitter = Math.floor(Math.random() * 5000); // Add 0-5s random jitter
+    const totalWaitTime = BASE_WAIT_TIME * Math.pow(2, retryCount) + jitter;
+
+    return new Promise(resolve => {
+      setTimeout(() => {
+        error.config.retryCount = retryCount + 1;
+        resolve(axios.request(error.config));
+      }, totalWaitTime);
+    });
   }
 
   return Promise.reject(error);
