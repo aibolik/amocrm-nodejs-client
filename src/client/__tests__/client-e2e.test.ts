@@ -17,7 +17,6 @@ describe('AmoClient E2E Tests', () => {
 
   beforeEach(async () => {
     client = new AmoClient({ baseUrl, token });
-    console.log('awaiting 1 second');
     // Add 1 second delay between tests
     await new Promise(resolve => setTimeout(resolve, 1000));
   });
@@ -29,7 +28,7 @@ describe('AmoClient E2E Tests', () => {
     }
     const accounts = await Promise.all(promises);
     accounts.forEach(assertAccount);
-  });
+  }, 10000);
 
   describe('Account', () => {
     it('should fetch account info', async () => {
