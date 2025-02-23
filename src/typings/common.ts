@@ -49,6 +49,7 @@ export interface Embedded {
   catalog_elements?: any;
   contacts?: EmbeddedContact[];
   datetime_settings?: DateTimeSettings;
+  users_groups?: Array<{ id: number; name: string; }>;
   users?: Partial<User>[];
   notes?: Partial<Note>[];
 }
